@@ -1,18 +1,28 @@
-import React, {useState} from 'react'
+import React from 'react'
+import Index from './container/Index'
+import About from './container/About'
+import User from './container/User'
 
 
 
-function App(props){
-  const [count ,setCount]=useState(1)
-return <div>
-  <h1>哈喽 {props.title} !{count}</h1>
-  hooks
-  <button onClick={()=>setCount(count+1)}>
-    累加
-  </button>
 
-</div>
-
-}
-
-export default <App title="开课吧"></App>
+export default [
+  {
+    path:"/",
+    component:Index,
+    //exact:true,
+    key:'index'
+  },
+  {
+    path:"/about",
+    component:About,
+    exact:true,
+    key:'about'
+  },
+  {
+    path:"/user",
+    component:User,
+    exact:true,
+    key:'user'
+  }
+]

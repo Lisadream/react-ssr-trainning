@@ -1,7 +1,18 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
+import {Provider} from 'react-redux'
+import routes from '../src/App'
+import {getClientStore} from '../src/store/store'
+import Header from '../src/component/Header'
 
-import App from '../src/App'
-//不能做render 即做dom初始化，又做事件监听
-//所以用注水
-ReactDom.hydrate(App,document.getElementById('root'))
+// 注水 客户端入口
+const Page = (<Provider store={getClientStore()}>
+  <BrowserRouter>
+  <Header></Header>
+    {routes.map(route=> <Route {...route}></Route>)}
+  </BrowserRouter>
+</Provider>)
+
+
+ReactDom.hydrate(Page, document.getElementById('root'))
